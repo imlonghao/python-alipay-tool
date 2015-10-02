@@ -7,7 +7,7 @@ import time
 cookies = {'ALIPAYJSESSIONID': ''}
 url = 'https://lab.alipay.com/consume/record/items.htm'
 api = ''
-key = '0'
+key = ''
 
 
 def getPaymentID(soup):
@@ -64,10 +64,6 @@ if __name__ == '__main__':
         Time = getTime(soup)
         Name = getName(soup)
         Amount = getAmount(soup)
-        # for x, y, z, k in PaymentID, Time, Name, Amount:
-        #     if x not in posted:
-        #         postData(x, y, z, k)
-        #         posted.append(x)
         length = len(PaymentID)
         for i in range(length):
             if not Name[i].startswith(u'\u4ed8\u6b3e-'):
@@ -79,6 +75,5 @@ if __name__ == '__main__':
                         Name[i].split('-')[1],
                         Amount[i],
                     )
-                print '%s\t%s\t%s\t%s' % (PaymentID[i], Time[i], Name[i].split('-')[1], Amount[i],)
                 posted.append(PaymentID[i])
         time.sleep(5)
