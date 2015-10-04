@@ -54,7 +54,12 @@ if __name__ == '__main__':
     while True:
         if len(posted) > 1000:
             posted = []
-        html = requests.get(url, cookies=cookies).text
+        req = requests.get(url, cookies=cookies)
+        if req.url.startswith('https://auth.alipay.com/'):
+            print 'Authentication failed!'
+            import sys
+            sys.exit(0)
+        html = req.text
         soup = bs(html, 'lxml')
         for i in soup.select('.amount.outlay'):
             i.parent.decompose()
