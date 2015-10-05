@@ -20,8 +20,9 @@ def getPaymentID(soup):
 
 def getTime(soup):
     Time = []
+    timeFormat = '%Y-%m-%d %H:%M:%S'
     for i in soup.select('.time'):
-        Time.append(int(time.mktime(time.strptime(i.string, '%Y-%m-%d %H:%M:%S'))))
+        Time.append(int(time.mktime(time.strptime(i.string, timeFormat))))
     return Time
 
 
