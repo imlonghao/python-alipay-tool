@@ -1,5 +1,6 @@
 #!/usr/bin/env python2
 
+from __future__ import print_function
 from bs4 import BeautifulSoup as bs
 import requests
 import time
@@ -56,7 +57,7 @@ if __name__ == '__main__':
             posted = []
         req = requests.get(url, cookies=cookies)
         if req.url.startswith('https://auth.alipay.com/'):
-            print 'Authentication failed!'
+            print('Authentication failed!')
             import sys
             sys.exit(0)
         html = req.text
