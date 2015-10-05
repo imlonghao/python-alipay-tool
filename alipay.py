@@ -42,10 +42,10 @@ def getAmount(soup):
 def postData(PaymentID, Time, Name, Amount):
     data = {
         'key': key,
-        'PaymentIDntid': PaymentID,
-        'Time': Time,
-        'Name': Name,
-        'Amount': Amount
+        'ddh': PaymentID,
+        'time': Time,
+        'name': Name,
+        'money': Amount
     }
     requests.post(api, data=data)
 
