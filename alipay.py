@@ -59,7 +59,7 @@ def postData(PaymentID, Time, Name, Amount):
         'money': Amount
     }
     requests.post(api, data=data)
-    logging.info('%s--%s--%s--%s' % PaymentID, Time, Name, Amount)
+    logging.info('%s--%s--%s--%s' % (PaymentID, Time, Name, Amount))
 
 if __name__ == '__main__':
     posted = []
