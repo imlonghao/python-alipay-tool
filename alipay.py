@@ -1,14 +1,23 @@
 #!/usr/bin/env python2
 
-from __future__ import print_function
 from bs4 import BeautifulSoup as bs
 import requests
 import time
+import logging
+
+# EDIT START
 
 cookies = {'ALIPAYJSESSIONID': ''}
-url = 'https://lab.alipay.com/consume/record/items.htm'
 api = ''
 key = ''
+
+# EDIT END
+
+url = 'https://lab.alipay.com/consume/record/items.htm'
+logging.basicConfig(filename='/tmp/alipay.log',
+                    level=logging.INFO,
+                    format='[%(asctime)s %(levelname)s] %(message)s',
+                    datefmt='%Y%m%d %H:%M:%S')
 
 
 def getPaymentID(soup):
@@ -50,6 +59,7 @@ def postData(PaymentID, Time, Name, Amount):
         'money': Amount
     }
     requests.post(api, data=data)
+    logging.info('%s--%s--%s--%s' % PaymentID, Time, Name, Amount)
 
 if __name__ == '__main__':
     posted = []
@@ -58,7 +68,7 @@ if __name__ == '__main__':
             posted = []
         req = requests.get(url, cookies=cookies)
         if req.url.startswith('https://auth.alipay.com/'):
-            print('Authentication failed!')
+            logging.critical('Authentication failed!')
             import sys
             sys.exit(0)
         html = req.text
