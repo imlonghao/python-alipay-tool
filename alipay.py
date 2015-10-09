@@ -14,7 +14,7 @@ key = ''
 def getPaymentID(soup):
     PaymentID = []
     for i in soup.select('.consumeBizNo'):
-        PaymentID.append(i.string[13:-8])
+        PaymentID.append(i.string.strip())
     return PaymentID
 
 
