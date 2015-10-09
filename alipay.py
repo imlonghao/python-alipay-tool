@@ -18,6 +18,7 @@ logging.basicConfig(filename='/tmp/alipay.log',
                     level=logging.INFO,
                     format='[%(asctime)s %(levelname)s] %(message)s',
                     datefmt='%Y%m%d %H:%M:%S')
+logging.getLogger("requests").setLevel(logging.WARNING)
 
 
 def getPaymentID(soup):
