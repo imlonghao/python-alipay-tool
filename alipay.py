@@ -1,6 +1,7 @@
 #!/usr/bin/env python2
 
 from bs4 import BeautifulSoup as bs
+from requests.packages.urllib3 import connectionpool
 import requests
 import time
 import logging
@@ -18,7 +19,7 @@ logging.basicConfig(filename='/tmp/alipay.log',
                     level=logging.INFO,
                     format='[%(asctime)s %(levelname)s] %(message)s',
                     datefmt='%Y%m%d %H:%M:%S')
-logging.getLogger("requests").setLevel(logging.WARNING)
+connectionpool.log.setLevel(logging.WARNING)
 
 
 def getPaymentID(soup):
