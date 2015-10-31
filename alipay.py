@@ -60,7 +60,11 @@ def postData(PaymentID, Time, Name, Amount):
         'name': Name,
         'money': Amount
     }
-    requests.post(api, data=data)
+    try:
+        requests.post(api, data=data, timeout=5)
+    except:
+        logging.warning('Timeout, retrying')
+        postData(PaymentID, Time, Name, Amount)
     logging.info('%s--%s--%s--%s' % (PaymentID, Time, Name, Amount))
 
 if __name__ == '__main__':
