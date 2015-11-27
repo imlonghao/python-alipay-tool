@@ -72,7 +72,11 @@ if __name__ == '__main__':
     while True:
         if len(posted) > 1000:
             posted = []
-        req = requests.get(url, cookies=cookies)
+        try:
+            req = requests.get(url, cookies=cookies)
+        except:
+            logging.warning('Connect to alipay failed!')
+            continue
         if req.url.startswith('https://auth.alipay.com/'):
             logging.critical('Authentication failed!')
             import sys
